@@ -1,0 +1,137 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+      <img src="assets/1.png" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+      <div class="searchf form-group col-md-3">
+        <form (keydown)="keyDownFunction($event)" [formGroup]="details">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input formControlName="patientname" type="text" placeholder="Search for Patients"
+                class="topSearchNav search_str" name="top-search" autocomplete="off" id="txtTopSearch"
+                style="outline: 0; border: 0; background: transparent; border-bottom: 1px solid #1ab394; width: 100%; height: 35px; padding-left: 10px; -moz-border-radius: 0px;-webkit-border-radius: 0px;border-radius: 0px; margin: 10px 0px 0px 0px; color:#FFF;"
+                maxlength="100" data-req-url="/Search/Index" />
+        </form>
+    </div>
+
+      <!-- <div style="background-color: black;" class="control-section" style="margin-left: 600px;">
+  <div class="scrollable-menu-control">
+      <ejs-menu [items]="menuItems" [enableScrolling]="true" cssClass="e-custom-scroll" [animationSettings]="animation" (beforeOpen)="onBeforeOpen($event)"></ejs-menu>
+  </div>
+</div> -->
+
+<div class="col-md-3">
+  <span class="fill-remaining-space">
+      <img src="assets/Dashboards.png" class="cccc" [matMenuTriggerFor]="appMenu"
+          #menuTrigger="matMenuTrigger" (mouseover)="menuTrigger.openMenu()" />
+
+      <mat-menu #appMenu="matMenu" [overlapTrigger]="false">
+          <span (mouseleave)="menuTrigger.closeMenu()">
+              <button mat-menu-item (click)="onClickMC()">
+                  Adjuster Dashboard
+              </button>
+              <button mat-menu-item (click)="onClickAD()">
+                  Schedule an appointment
+              </button>
+              <button mat-menu-item (click)="onClickOD()" (click)="selectedIndex = 1">
+                  Office Dashboard
+              </button>
+              <button mat-menu-item (click)="onClickMC()">
+                  My cases
+              </button>
+              <button mat-menu-item (click)="onClickMC()">
+                  Billing
+              </button>
+              <button mat-menu-item (click)="onClickMC()">
+                  Incident Managment
+              </button>
+              <button mat-menu-item (click)="onClickMC()">
+                  Case Managment Dashboard
+              </button>
+              <button mat-menu-item (click)="onClickMC()">
+                  Initioate Referral
+              </button>
+              <button mat-menu-item (click)="onClickMC()">
+                  Booking Sheet Dashboard
+              </button>
+              <button mat-menu-item (click)="onClickMC()">
+                  Asc Schedule
+              </button>
+              <button mat-menu-item (click)="onClickMC()">
+                  Patient Portal
+              </button>
+          </span>
+      </mat-menu>
+  </span>
+</div>
+
+  </mat-toolbar-row>
+</mat-toolbar>
+
+
+    <mat-tab-group *ngIf="main" [(selectedIndex)]="selectedIndex" style="background-color: #969697;color: white">
+      <mat-tab *ngIf="officeDashboard">
+          <ng-template mat-tab-label>
+              <mat-icon class="example-tab-icon">event_note</mat-icon>
+              <div class="spanclass">Appointment Dashboard</div>
+          </ng-template>
+
+<!-- Appmt Dash Start -->
+
+<!-- <app-pagination></app-pagination> -->
+
+<!-- Appmt Dash End -->
+
+      </mat-tab>
+
+      <mat-tab *ngIf="officeDashboard">
+          <ng-template mat-tab-label>
+              <mat-icon class="example-tab-icon">event_note</mat-icon>
+              <div class="spanclass">Appointment Scheduler</div>
+          </ng-template>
+          <!-- <h1 style="background-color: blueviolet;">Welocome To YourDrs </h1> -->
+      </mat-tab>
+
+      <mat-tab label="Mycases">
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">insert_drive_file</mat-icon>
+            <div class="spanclass">My Cases</div>
+        </ng-template>
+    </mat-tab>
+</mat-tab-group>
+
+
+
+<div *ngIf="table">
+  <div class="modal-body">
+      <div>
+          <table class="table">
+              <thead style="background-color: #337ab7; color: white">
+                  <tr>
+                      <th></th>
+                      <th>ID</th>
+                      <th>Account</th>
+                      <th>FirstName</th>
+                      <th>LastName</th>
+                      <th>CaseType</th>
+                      <th>TelePhone</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let item of arr">
+                      <td>
+                          <i class="fa fa-user-plus fa-2x" aria-hidden="true" title="Patient"></i>
+                      </td>
+                      <td>{{ item.id }}</td>
+                      <td>{{ item.accountNumber }}</td>
+                      <td>{{ item.firstName }}</td>
+                      <td>{{ item.lastName }}</td>
+                      <td>{{ item.caseType }}</td>
+                      <td>{{ item.telephone }}</td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+  <div class="row" class="ttt" style="margin-top: 20px; margin-left: 900px;">
+      <button style="float: right;" class="btn btn-warning" (click)="onclickback()">
+          Back</button>&nbsp;
+  </div>
+</div>
